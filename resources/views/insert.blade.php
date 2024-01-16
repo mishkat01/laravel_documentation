@@ -23,6 +23,8 @@
         Remember, any HTML forms pointing to POST, PUT, PATCH, or DELETE routes that are defined in the web routes file
         should include a CSRF token field. Otherwise, the request will be rejected. --}}
         @csrf
+
+
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Name</label>
             <input type="text" name="name" class="form-control" id="exampleInputEmail1"

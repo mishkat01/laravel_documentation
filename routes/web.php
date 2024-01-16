@@ -85,3 +85,12 @@ Route::middleware(['api'])->group(function () {
 
 // The Route List
 // php artisan route:list
+// php artisan route:clear
+// php artisan route:cache
+
+
+// a route that will be executed when no other route matches the incoming request.
+Route::fallback(function () {
+   return 'wtf';
+});
+// The fallback route should always be the last route registered by your application.
