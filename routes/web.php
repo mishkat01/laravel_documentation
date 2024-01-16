@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Employees;
 use App\Models\Employee;
+// custom middlewere
+use App\Http\Middleware\EnsureMyCustomTokenIsValid;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,3 +96,17 @@ Route::fallback(function () {
    return 'wtf';
 });
 // The fallback route should always be the last route registered by your application.
+
+
+
+
+ 
+// Route::middleware([EnsureMyCustomTokenIsValid::class])->group(function () {
+//    Route::get('/', function () {
+//        // ...
+//    });
+
+//    Route::get('/profile', function () {
+//        // ...
+//    })->withoutMiddleware([EnsureMyCustomTokenIsValid::class]);
+// });
