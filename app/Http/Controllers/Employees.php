@@ -25,6 +25,12 @@ class Employees extends Controller
         
 
         if($req->hasFile('image')){
+
+            // default file saving
+            // $path = $req->image->path();
+            // $extension = $req->image->extension();
+            // $path = $req->image->store('image');
+
             $image = $req->file('image');
             $ext = $image -> getClientOriginalExtension();
             $image_name = time().'.'.$ext;
@@ -51,4 +57,13 @@ class Employees extends Controller
    function update(Request $req,$id){
         
    }
+
+
+//    single action controller
+//    for single action controllers, you do not need to specify a controller method in route. 
+// php artisan make:controller ProvisionServer --invokable
+//    public function __invoke()
+//    {
+//        // ...
+//    }
 }

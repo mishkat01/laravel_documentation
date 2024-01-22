@@ -15,16 +15,18 @@
 </head>
 
 <body class="bg-dark m-5 p-5">
+    @if (session()->has('success'))
+        <div class="alert alert-info">{{ session()->get('success') }}</div>
+    @endif
     <table class="table">
+        <a href="{{ route('photos.create') }}"><button class="btn bg-info">Add</button></a>
+
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">name</th>
                 <th scope="col">Image</th>
-
-                <th scope="col">gender</th>
-                <th scope="col">Country</th>
-                <th scope="col">skill</th>
+                <th scope="col">Phone</th>
                 <th scope="col">Action</th>
 
             </tr>
@@ -34,19 +36,23 @@
                 <tr>
                     <th scope="row">{{ $item->id }}</th>
                     <td>{{ $item->name }}</td>
-
-                    <td><img src="{{ asset('storage/app/image/' . $item->image) }}" height="100px" width="100px"
+                    <td><img src="{{ asset('storage/image/' . $item->image) }}" height="100px" width="100px"
                             alt=""></td>
 
-                    <td>{{ $item->gender }}</td>
-                    <td>{{ $item->country }}</td>
-                    <td><button class="add-skill-btn" data-employee-id="{{ $item->id }}">Add Skill</button></td>
+
+                    <td>{{ $item->phone }}</td>
+
 
                     <td>
 
-                        <a href="delete/{{ $item->id }}"><button class="btn bg-danger">Delete</button>
-                        </a>
+
                         <a href="edit/{{ $item->id }}"> <button class="btn bg-info">Edit</button></a>
+                        <form action="{{ route('photos.destroy', $item->id) }}" method="post" style="display: inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
                     </td>
                 </tr>
             @endforeach

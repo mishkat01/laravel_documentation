@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Employees;
+//custom controller for crud by default
+use App\Http\Controllers\PhotoController;
+
 use App\Models\Employee;
 // custom middlewere
 use App\Http\Middleware\EnsureMyCustomTokenIsValid;
@@ -16,13 +19,14 @@ use App\Http\Middleware\EnsureMyCustomTokenIsValid;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 // Basic Routing
 Route::get('/greeting', function () {
     return 'hi';
 });
 
 
-//crud
+//normal crud
 Route::get('/',[App\Http\Controllers\Employees::class,'view']);
 Route::get('/insert',[App\Http\Controllers\Employees::class,'insert'])->name('insert');
 Route::post('store_data',[App\Http\Controllers\Employees::class,'store_data']);
@@ -110,3 +114,24 @@ Route::fallback(function () {
 //        // ...
 //    })->withoutMiddleware([EnsureMyCustomTokenIsValid::class]);
 // });
+
+
+
+// resource crud routing
+Route::resource('photos', PhotoController::class);
+http://127.0.0.1:8000/photos/create
+
+// group resource
+// Route::resources([
+//    'photos' => PhotoController::class,
+//    'posts' => PostController::class,
+// ]);
+
+// Partial Resource Routes
+// Route::resource('photos', PhotoController::class)->only([
+//    'index', 'show'
+// ]);
+
+// Route::resource('photos', PhotoController::class)->except([
+//    'create', 'store', 'update', 'destroy'
+// ]);
