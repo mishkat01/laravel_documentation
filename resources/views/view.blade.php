@@ -35,7 +35,7 @@
                     <th scope="row">{{ $item->id }}</th>
                     <td>{{ $item->name }}</td>
 
-                    <td><img src="{{ asset('storage/app/image/' . $item->image) }}" height="100px" width="100px"
+                    <td><img src="{{ asset('storage/image/' . $item->image) }}" height="100px" width="100px"
                             alt=""></td>
 
                     <td>{{ $item->gender }}</td>
